@@ -38,7 +38,7 @@ source "$PLUGIN_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 # Tools
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh --cmd cd)"
-eval "$(atuin init zsh)"
+eval "$(atuin init zsh --disable-up-arrow)"   # Up = plain zsh history, Ctrl-R = atuin search
 source <(fzf --zsh)
 
 # Aliases
