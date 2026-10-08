@@ -1,16 +1,17 @@
 # Powerline / agnoster-style prompt in the Tokyo Night Storm palette.
-# Each segment carries its own arrows, so the git block simply disappears outside a repo.
+#   ▌ folder ▶ branch status ▶ ❯      (interlocking arrows; git block vanishes outside a repo)
 # Switch with:  prompt-style powerline   |   prompt-style flat
 
 add_newline = false
 
+# The directory's closing arrow depends on what follows it, so it is drawn in two places:
+#  - inside the git group (blue on purple), shown only in a repo
+#  - by custom.dir_end (blue on terminal bg), shown only outside a repo
 format = """
-[](fg:#7aa2f7)\
 $directory\
-[](fg:#7aa2f7)\
-$git_branch\
-$git_status\
-$cmd_duration\
+([](fg:#7aa2f7 bg:#bb9af7)$git_branch$git_status[](fg:#bb9af7))\
+${custom.dir_end}\
+ $cmd_duration\
 $character"""
 
 [directory]
@@ -22,17 +23,22 @@ truncate_to_repo = false
 [git_branch]
 symbol = " "
 style = "bg:#bb9af7 fg:#1f2335 bold"
-format = "[](fg:#bb9af7)[ $symbol$branch ]($style)"
+format = "[ $symbol$branch ]($style)"
 
 [git_status]
 style = "bg:#bb9af7 fg:#1f2335"
-format = "[$all_status$ahead_behind]($style)[](fg:#bb9af7) "
+format = "[$all_status$ahead_behind]($style)"
 modified = "✎ "
 staged = "+ "
 untracked = "? "
 stashed = "󰆓 "
 ahead = "⇡${count} "
 behind = "⇣${count} "
+
+[custom.dir_end]
+when = "! git rev-parse --is-inside-work-tree >/dev/null 2>&1"
+format = "[](fg:#7aa2f7)"
+shell = ["sh"]
 
 [cmd_duration]
 min_time = 2000
