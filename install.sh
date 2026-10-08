@@ -52,7 +52,7 @@ fi
 say "Linking configs"
 link "$REPO/kitty/kitty.conf"         "$HOME/.config/kitty/kitty.conf"
 link "$REPO/kitty/current-theme.conf" "$HOME/.config/kitty/current-theme.conf"
-link "$REPO/starship/starship.toml"   "$HOME/.config/starship.toml"
+[ -L "$HOME/.config/starship.toml" ] || link "$REPO/starship/flat.toml" "$HOME/.config/starship.toml"   # keeps your chosen style on re-run
 link "$REPO/zsh/.zshrc"               "$HOME/.zshrc"
 [ -f "$HOME/.zshrc.local" ] || { touch "$HOME/.zshrc.local"; echo "    created empty ~/.zshrc.local for machine-specific settings"; }
 

@@ -22,7 +22,7 @@ configs into place, backing up anything already there as `*.bak`. Re-run it any 
 ```
 kitty/kitty.conf          -> ~/.config/kitty/kitty.conf
 kitty/current-theme.conf  -> ~/.config/kitty/current-theme.conf
-starship/starship.toml    -> ~/.config/starship.toml
+starship/flat.toml        -> ~/.config/starship.toml   (or powerline.toml)
 zsh/.zshrc                -> ~/.zshrc
 ```
 
@@ -33,6 +33,20 @@ commit and push to sync the other machine (`git pull` there; no re-install neede
 
 `~/.zshrc.local` is sourced at the end of `.zshrc` and is git-ignored. Put work PATH exports,
 company tooling, nvm/pyenv init, and anything secret there.
+
+## Switch prompt style
+
+Two Starship prompts live in `starship/`, both in the Tokyo Night palette:
+
+- `flat` — single line, `folder  branch ❯`
+- `powerline` — agnoster-style colored segments with arrows
+
+```bash
+prompt-style powerline   # or: prompt-style flat
+```
+
+It re-points the `~/.config/starship.toml` symlink; the next prompt picks it up. Add a new
+`starship/<name>.toml` and it becomes a `prompt-style <name>` option automatically.
 
 ## Change the theme
 

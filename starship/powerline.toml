@@ -1,0 +1,47 @@
+# Powerline / agnoster-style prompt in the Tokyo Night Storm palette.
+# Each segment carries its own arrows, so the git block simply disappears outside a repo.
+# Switch with:  prompt-style powerline   |   prompt-style flat
+
+add_newline = false
+
+format = """
+[](fg:#7aa2f7)\
+$directory\
+[](fg:#7aa2f7)\
+$git_branch\
+$git_status\
+$cmd_duration\
+$character"""
+
+[directory]
+style = "bg:#7aa2f7 fg:#1f2335 bold"
+format = "[ $path ]($style)"
+truncation_length = 1
+truncate_to_repo = false
+
+[git_branch]
+symbol = " "
+style = "bg:#bb9af7 fg:#1f2335 bold"
+format = "[](fg:#bb9af7)[ $symbol$branch ]($style)"
+
+[git_status]
+style = "bg:#bb9af7 fg:#1f2335"
+format = "[$all_status$ahead_behind]($style)[](fg:#bb9af7) "
+modified = "✎ "
+staged = "+ "
+untracked = "? "
+stashed = "󰆓 "
+ahead = "⇡${count} "
+behind = "⇣${count} "
+
+[cmd_duration]
+min_time = 2000
+style = "fg:#565f89"
+format = "[$duration]($style) "
+
+[character]
+success_symbol = "[❯](bold fg:#9ece6a)"
+error_symbol = "[❯](bold fg:#f7768e)"
+
+[time]
+disabled = true

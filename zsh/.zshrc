@@ -36,10 +36,18 @@ source "$PLUGIN_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source "$PLUGIN_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 # Tools
+TERMINAL_SETUP="${${(%):-%N}:A:h:h}"   # repo root, resolved through the ~/.zshrc symlink
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh --cmd cd)"
 eval "$(atuin init zsh --disable-up-arrow)"   # Up = plain zsh history, Ctrl-R = atuin search
 source <(fzf --zsh)
+
+# Switch Starship prompt style:  prompt-style flat | prompt-style powerline
+prompt-style() {
+  local f="$TERMINAL_SETUP/starship/$1.toml"
+  [ -f "$f" ] || { echo "styles: $(ls "$TERMINAL_SETUP/starship" | sed 's/\.toml$//' | tr '\n' ' ')"; return 1; }
+  ln -sfn "$f" ~/.config/starship.toml && echo "prompt -> $1"
+}
 
 # Aliases
 alias ls='eza --icons --group-directories-first'
