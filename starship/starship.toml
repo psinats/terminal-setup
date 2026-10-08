@@ -16,6 +16,12 @@ format = "[$symbol$branch]($style) "
 [git_status]
 style = "yellow"
 format = "[$all_status$ahead_behind]($style) "
+modified = "✎"
+staged = "+"
+untracked = "?"
+stashed = "󰆓 "
+ahead = "⇡${count}"
+behind = "⇣${count}"
 
 [character]
 success_symbol = "[❯](bold green)"
