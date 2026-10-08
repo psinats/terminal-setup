@@ -1,0 +1,6 @@
+# Never commit these — history and local/work settings can contain secrets
+.zsh_history
+.zshrc.local
+zsh/.zshrc.local
+*.local
+.DS_Store
