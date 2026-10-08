@@ -56,6 +56,13 @@ bindkey '^[[1;3C' forward-word    # Alt-Right (macOS)
 bindkey '^[[1;3D' backward-word   # Alt-Left
 bindkey '^ ' autosuggest-accept   # Ctrl-Space
 
+# Up/Down: when something is typed, cycle only history entries starting with it
+autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey '^[[A' up-line-or-beginning-search
+bindkey '^[[B' down-line-or-beginning-search
+
 # Local / work overrides (PATH exports, company tooling, nvm/pyenv, secrets)
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
