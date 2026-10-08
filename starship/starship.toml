@@ -9,7 +9,7 @@ truncate_to_repo = false
 format = "[$path]($style) "
 
 [git_branch]
-symbol = " "
+symbol = " "
 style = "bold purple"
 format = "[$symbol$branch]($style) "
 
